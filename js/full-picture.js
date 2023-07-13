@@ -17,11 +17,12 @@ const getCommentsShownInterpolation = () => `
   <span class="comments-count">${commentsArray.length} комментариев</span>
   `;
 
-const renderDataOnfullPicture = ({ url, description, likes }) => {
-  fullPictureNode.querySelector('.big-picture__img img').src = url;
-  fullPictureNode.querySelector('.big-picture__img img').alt = description;
-  fullPictureNode.querySelector('.likes-count').textContent = likes;
-  fullPictureNode.querySelector('.social__caption').textContent = description;
+const renderDataOnfullPicture = (container, { url, description, likes }) => {
+  const bigPicture = container.querySelector('.big-picture__img img');
+  bigPicture.src = url;
+  bigPicture.alt = description;
+  container.querySelector('.likes-count').textContent = likes;
+  container.querySelector('.social__caption').textContent = description;
 };
 
 const createComment = ({ avatar, name, message }) => {
@@ -60,15 +61,14 @@ const openFullPicture = (data) => {
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
 
-  renderDataOnfullPicture(data);
+  renderDataOnfullPicture(fullPictureNode, data);
   commentsArray = data.comments;
   if (commentsArray.length > 0) {
-    renderComments();
-  } else {
-    commentsContainerNode.innerHTML = '';
-    commentsLoaderButtonNode.classList.add('hidden');
-    commentsShownCountNode.innerHTML = getCommentsShownInterpolation();
+    return renderComments();
   }
+  commentsContainerNode.innerHTML = '';
+  commentsLoaderButtonNode.classList.add('hidden');
+  commentsShownCountNode.innerHTML = getCommentsShownInterpolation();
 };
 
 const closeFullPicture = () => {
