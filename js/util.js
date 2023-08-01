@@ -1,4 +1,5 @@
 const DELAY_ALERT_RENDER = 500;
+const DELAY_FILTER_RENDER = 500;
 
 const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(min, max));
@@ -42,7 +43,7 @@ const openErrorAlert = (message) => {
   setTimeout(() => alertContainerNode.remove(), DELAY_ALERT_RENDER);
 };
 
-const debounce = (callback, timeoutDelay = 500) => {
+const debounce = (callback, timeoutDelay = DELAY_FILTER_RENDER) => {
   let timeoutId;
 
   return (...rest) => {
