@@ -1,4 +1,4 @@
-const BASE_URL = 'https://28.javascript.pages.academy/kekstagram';
+const BASE_URL = 'https://29.javascript.htmlacademy.pro/kekstagram/data';
 
 const Route = {
   GET: '/data',
